@@ -16,15 +16,20 @@ function update()
 function moduleParameterChanged(param)
 {
 	if(param.name == "giveLinkForOAuth") {
-		local.parameters.linkForOAuth.set("https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=" 
-			+ local.parameters.clientID.get()
-			+"&redirect_uri=http://localhost:3000&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+whispers%3Aread+whispers%3Aedit");
+		if (local.parameters.clientID.get() != "" && local.parameters.oAuthRedirectURL.get() != "") {
+				local.parameters.linkForOAuth.set("https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=" 
+				+ local.parameters.clientID.get()
+				+"&redirect_uri="
+				+ local.parameters.oAuthRedirectURL.get()
+				+"&scope=chat%3Aread+chat%3Aedit+channel%3Amoderate+whispers%3Aread+whispers%3Aedit");
+		}
+		else {
+			util.showMessageBox("Information", "Please, fill in the client ID and OAuth redirect URL fields", "info", "Got it");
+		}
 	}
 	if(param.name == "connected") {
 		local.parameters.identified.set(false);
 	}
-
-	
 }
 
 /* 	--------------------------------------------------------------------------------------------------------------

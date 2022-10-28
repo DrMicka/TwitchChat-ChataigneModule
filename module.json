@@ -2,7 +2,7 @@
 	"name": "Twitch Chat",
 	"type": "WebSocket Client",
 	"path": "Software",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "To control your twitch chat",
 	"url": "https://github.com/DrMicka/TwitchChat-ChataigneModule",
 	"downloadURL": "https://github.com/DrMicka/TwitchChat-ChataigneModule/archive/master.zip",
@@ -23,6 +23,10 @@
 		"Client ID": {
 			"type": "String",
 		},
+		"OAuth redirect URL": {
+			"type": "String",
+			"default":"http://localhost:3000",
+		},
 		"Give link for OAuth": {
 			"type":"Trigger",
 		},
@@ -34,6 +38,7 @@
 		},
 		"Identified": {
 			"type": "Boolean",
+			"readOnly":true,
 			"default":false,
 		},
    },
