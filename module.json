@@ -1,0 +1,69 @@
+{
+	"name": "Twitch Chat",
+	"type": "WebSocket Client",
+	"path": "Software",
+	"version": "0.0.1",
+	"description": "To control your twitch chat",
+	"url": "https://github.com/DrMicka/WaveLink-Chataigne_Module",
+	"downloadURL": "https://github.com/DrMicka/WaveLink-Chataigne_Module/archive/master.zip",
+	"hasInput": true,
+	"hasOutput": true,
+	"hideDefaultCommands": true,
+	"hideDefaultParameters": [
+		"autoAdd",
+		"protocol",
+		"messageStructure",
+		"firstValueIsTheName",
+		"useSecureConnection",
+	],
+   "parameters": {
+		"Channel Name": {
+			"type": "String",
+		},
+		"Client ID": {
+			"type": "String",
+		},
+		"Give link for OAuth": {
+			"type":"Trigger",
+		},
+		"Link for OAuth": {
+			"type": "String",
+		},
+		"Received OAuth": {
+			"type": "String",
+		},
+		"Identified": {
+			"type": "Boolean",
+			"default":false,
+		},
+   },
+   "defaults": {
+		"Protocol": "Lines",
+		"autoAdd": false,
+		"serverPath": "ws://irc-ws.chat.twitch.tv:80",
+   },
+   "scripts": [
+      "Twitchat.js"
+   ],
+	"commands": {
+		"Write message": {
+			"menu": "",
+			"callback": "Privmsg",
+			"parameters": {
+				"Message to send": {
+					"type": "String"
+				}
+			}
+		},
+		"Commande": {
+			"menu": "",
+			"callback": "Commande",
+			"parameters": {
+				"data": {
+					"type": "String"
+				}
+            },
+		},
+	}
+}
+
