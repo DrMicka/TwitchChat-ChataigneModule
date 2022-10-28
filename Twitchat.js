@@ -61,20 +61,6 @@ function Privmsg(message) {
 }
 
 function Commande(data) {
-	
-var baseURL = "https://id.twitch.tv/oauth2/authorize?response_type=token";
-	var client_ID = local.parameters.clientID.get();
-	script.log(client_ID);
-    var clientId = "client_id=" + client_ID;
-    var redirectUri = "redirect_uri=" + "http://localhost:3000";  //local.parameters.redirect_URL;
-    var scope = "scope=chat:read chat:edit channel:moderate whispers:read whispers:edit";
-	var client_secret = "ts7ahow6wptddqsr4qj4vgyjalhbmi";
-    var state = "state=c3ab8aa609ea11e793ae92361f002671";
-	script.log(baseURL + "&" + clientId + "&" + redirectUri + "&" + scope);
-	//local.send(baseURL + "&" + clientId + "&" + redirectUri + "&" + scope);
-	//local.sendGET("https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=9az83rn2boolkhfais3gy65bw58xp0&redirect_uri=http://localhost:3000&scope=channel%3Amanage%3Apolls+channel%3Aread%3Apolls&state=c3ab8aa609ea11e793ae92361f002671");
-    //this.webview.Source = new System.Uri(baseURL + "&" + clientId + "&" + redirectUri + "&" + scope + "&" + state, System.UriKind.Absolute);
-	//local.send(baseURL + "&" + clientId + "&" + redirectUri + "&" + scope + "&" + state);
-	
+	local.send(data);	
 }
 
