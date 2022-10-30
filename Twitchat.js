@@ -53,6 +53,7 @@ function wsMessageReceived(message)
     }
 	
 	// Dernier message dans le chat avec le pseudo
+	//message type :pseudo!pseudo@pseudo.tmi.twitch.tv PRIVMSG #channel :message
 	if (message.indexOf("PRIVMSG") != -1){
 		var lgChanName = local.parameters.channelName.get().length;
 	//1.le message envoyé
@@ -60,10 +61,9 @@ function wsMessageReceived(message)
 		var msg = message.substring(startMsg+lgChanName+3,message.length);
 		local.values.lastMessage.set(msg);
 	//2.le pseudo
-		var startPseudo = message.indexOf("@");
-		var endPseudo = message.indexOf(".tmi.twitch.tv");
-		var pseudo = message.substring(startPseudo+1, endPseudo);
-		local.values.lastPseudoMessage.set(pseudo);		
+		var lgPseudo = (message.indexOf(".tmi.twitch.tv")-3)/3;
+		var pseudo = message.substring(1, lgPseudo+1);
+		local.values.lastPseudoMessage.set(pseudo);			
     }
 }
 /* 	--------------------------------------------------------------------------------------------------------------
