@@ -2,7 +2,7 @@
 	"name": "Twitch Chat",
 	"type": "WebSocket Client",
 	"path": "Software",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "To control your twitch chat",
 	"url": "https://github.com/DrMicka/TwitchChat-ChataigneModule",
 	"downloadURL": "https://github.com/DrMicka/TwitchChat-ChataigneModule/archive/master.zip",
@@ -47,6 +47,14 @@
 		"autoAdd": false,
 		"serverPath": "ws://irc-ws.chat.twitch.tv:80",
    },
+	"values": {
+		"Last pseudo message": {
+			"type":"String",
+		},
+		"Last message": {
+			"type":"String",
+		},
+	},
    "scripts": [
       "Twitchat.js"
    ],

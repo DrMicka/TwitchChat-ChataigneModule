@@ -1,6 +1,7 @@
 function init()
 {
-
+	local.values.lastPseudoMessage.set("");
+	local.values.lastMessage.set("");		
 }
 
 function update()
@@ -35,29 +36,36 @@ function moduleParameterChanged(param)
 /* 	--------------------------------------------------------------------------------------------------------------
 										CONNEXION TO TWITCHCHAT BY WEBSOCKET
 	--------------------------------------------------------------------------------------------------------------*/
-function dataReceived(data)
-{
-	//If mode is "Lines", you can expect data to be a single line String
-	script.log("Data received : " +data);
-}
-
 function wsMessageReceived(message)
 {
 	script.log("Websocket message received : " +message);
 
-    // Message si la connection à échoué  
+    // Message si la connection a échoué  
     if(message.indexOf(":tmi.twitch.tv NOTICE * :Login authentication failed") != -1){
         util.showMessageBox("Alerte !", "Problem with your Login authentication : check the Channel Name and the Received OAuth", "warning", "Got it");
 		local.parameters.identified.set(false);
     }
 	
+	// Message keepalive PING-PONG  
+	if(message.indexOf("PING") != -1){
+		script.log("PONG :tmi.twitch.tv");
+        local.send ("PONG :tmi.twitch.tv");	
+    }
+	
+	// Dernier message dans le chat avec le pseudo
+	if (message.indexOf("PRIVMSG") != -1){
+		var lgChanName = local.parameters.channelName.get().length;
+	//1.le message envoyé
+		var startMsg = message.indexOf("#"+local.parameters.channelName.get().toLowerCase());
+		var msg = message.substring(startMsg+lgChanName+3,message.length);
+		local.values.lastMessage.set(msg);
+	//2.le pseudo
+		var startPseudo = message.indexOf("@");
+		var endPseudo = message.indexOf(".tmi.twitch.tv");
+		var pseudo = message.substring(startPseudo+1, endPseudo);
+		local.values.lastPseudoMessage.set(pseudo);		
+    }
 }
-
-function wsDataReceived(data)
-{
-	script.log("Websocket data received : " +data);
-}
-
 /* 	--------------------------------------------------------------------------------------------------------------
 										DIFFERENTS FUNCTIONS FOR SCRIPT
 	--------------------------------------------------------------------------------------------------------------*/
@@ -66,6 +74,6 @@ function Privmsg(message) {
 }
 
 function Commande(data) {
-	local.send(data);	
+	local.send(data);
 }
 
