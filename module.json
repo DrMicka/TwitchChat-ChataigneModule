@@ -27,11 +27,8 @@
 			"type": "String",
 			"default":"http://localhost:3000",
 		},
-		"Give link for OAuth": {
+		"Give me OAuth": {
 			"type":"Trigger",
-		},
-		"Link for OAuth": {
-			"type": "String",
 		},
 		"Received OAuth": {
 			"type": "String",

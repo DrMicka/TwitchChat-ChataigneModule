@@ -16,9 +16,9 @@ function update()
 
 function moduleParameterChanged(param)
 {
-	if(param.name == "giveLinkForOAuth") {
+	if(param.name == "giveMeOAuth") {
 		if (local.parameters.clientID.get() != "" && local.parameters.oAuthRedirectURL.get() != "") {
-				local.parameters.linkForOAuth.set("https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=" 
+				util.gotoURL("https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=" 
 				+ local.parameters.clientID.get()
 				+"&redirect_uri="
 				+ local.parameters.oAuthRedirectURL.get()
