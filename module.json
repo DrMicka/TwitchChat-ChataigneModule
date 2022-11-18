@@ -65,6 +65,12 @@
 				}
 			}
 		},
+		"Remove values": {
+			"menu": "",
+			"callback": "RemoveValues",
+			"parameters": {
+				}
+		},
 		"Commande": {
 			"menu": "",
 			"callback": "Commande",

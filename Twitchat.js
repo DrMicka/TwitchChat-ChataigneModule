@@ -73,6 +73,11 @@ function Privmsg(message) {
 	local.send("PRIVMSG #"+local.parameters.channelName.get().toLowerCase()+" :"+message);
 }
 
+function RemoveValues() {
+	local.values.lastMessage.set("");
+	local.values.lastPseudoMessage.set("");
+}
+
 function Commande(data) {
 	local.send(data);
 }
