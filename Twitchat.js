@@ -1,7 +1,9 @@
+var connexionTest = false;
+
 function init()
 {
 	local.values.lastPseudoMessage.set("");
-	local.values.lastMessage.set("");		
+	local.values.lastMessage.set("");
 }
 
 function update()
@@ -41,9 +43,10 @@ function wsMessageReceived(message)
 	script.log("Websocket message received : " +message);
 
     // Message si la connection a échoué  
-    if(message.indexOf(":tmi.twitch.tv NOTICE * :Login authentication failed") != -1){
+    if(message.indexOf(":tmi.twitch.tv NOTICE * :Login authentication failed") != -1 && connexionTest == false){
         util.showMessageBox("Alerte !", "Problem with your Login authentication : check the Channel Name and the Received OAuth", "warning", "Got it");
 		local.parameters.identified.set(false);
+		connexionTest = true;
     }
 	
 	// Message keepalive PING-PONG  

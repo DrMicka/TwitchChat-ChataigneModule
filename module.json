@@ -2,7 +2,7 @@
 	"name": "Twitch Chat",
 	"type": "WebSocket Client",
 	"path": "Software",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "To control your twitch chat",
 	"url": "https://github.com/DrMicka/TwitchChat-ChataigneModule",
 	"downloadURL": "https://github.com/DrMicka/TwitchChat-ChataigneModule/archive/master.zip",
